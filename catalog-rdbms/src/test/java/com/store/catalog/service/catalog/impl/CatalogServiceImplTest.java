@@ -27,11 +27,11 @@ import static org.mockito.Mockito.when;
 public class CatalogServiceImplTest {
 
 
-	private CategoryDao categoryDaoMock;	
-	
+	private CategoryDao categoryDaoMock;
 
-	private ProductDao productDaoMock;	
-	
+
+	private ProductDao productDaoMock;
+
 
 	private ItemDao itemDaoMock;
 
@@ -43,7 +43,7 @@ public class CatalogServiceImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
+
 		//init implementation CatalogServiceImpl
 
 		//set dependencies for Daos
@@ -114,7 +114,7 @@ public class CatalogServiceImplTest {
         Category category2 = getCategory2();
 
         CategoryDTO categoryDTO = getCategoryDto();
-        CategoryDTO categoryDTO2 = getCategoryDto();
+        CategoryDTO categoryDTO2 = getCategoryDto2();
 
         List<Category> returnedLst = new ArrayList<Category>();
 		
@@ -157,7 +157,13 @@ public class CatalogServiceImplTest {
 	/* ---------------------------------- */
 	/* ---------------------------------- */
 	/* ---------------------------------- */
-	@Test 
+	//put the right annotation
+	public void verifySaveProductThrowExceptionWhenProductDTOIsNull() throws Exception {
+		//code simulating savind a product with a null parameter
+		throw new Exception("not yet implemented");
+	}
+
+	@Test
 	public void saveProductTest() throws Exception {
 		throw new Exception("not yet implemented");
 	}	
@@ -177,7 +183,12 @@ public class CatalogServiceImplTest {
 	@Test 
 	public void findProductsTest() throws Exception {
 		throw new Exception("not yet implemented");
-	}	
+	}
+
+	@Test
+	public void findProductsByCategoryIdTest() throws Exception {
+		throw new Exception("not yet implemented");
+	}
 
 	@Test 
 	public void findProductTest() throws Exception {
@@ -188,6 +199,11 @@ public class CatalogServiceImplTest {
 	/* ---------------------------------- */
 	/* ---------------------------------- */
 	/* ---------------------------------- */
+	//put the right annotation
+	public void verifySaveItemThrowExceptionWhenItemDTOIsNull() throws Exception {
+		throw new Exception("not yet implemented");
+	}
+
 	
 	@Test 
 	public void saveItemTest() throws Exception {
@@ -239,6 +255,11 @@ public class CatalogServiceImplTest {
 		return category;
 	}
 
+	private CategoryDTO getCategoryDto2(){
+		CategoryDTO category = new CategoryDTO(Long.valueOf(2L), "categoryName2", "categoryDesc2");
+		return category;
+	}
+
 	private Category getCategory(){
 		Category category = new Category(Long.valueOf(1L), "categoryName", "categoryDesc");
 		return category;
@@ -254,7 +275,12 @@ public class CatalogServiceImplTest {
 	private ProductDTO getProductDto(){
 		ProductDTO product = new ProductDTO(Long.valueOf(1L), "productName", "productDesc");
 		return product;
-	}	
+	}
+
+	private ProductDTO getProductDto2(){
+		ProductDTO product = new ProductDTO(Long.valueOf(2L), "productName2", "productDesc2");
+		return product;
+	}
 	
 	
 
@@ -272,6 +298,12 @@ public class CatalogServiceImplTest {
 	
 	private ItemDTO getItemDto(){
 		ItemDTO itemDto = new ItemDTO(Long.valueOf(1L),"articleID",20.0);
+		return itemDto;
+	}
+
+
+	private ItemDTO getItemDto2(){
+		ItemDTO itemDto = new ItemDTO(Long.valueOf(2L),"articleID2",30.0);
 		return itemDto;
 	}
 
