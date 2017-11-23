@@ -27,7 +27,7 @@
             <list>
                 <!--<value>classpath:configuration.properties</value>-->
                 <!--<value>classpath:configuration-nosql.properties</value>-->
-                <value>classpath:jdbc-postgresql.properties</value>
+                <!--<value>classpath:jdbc-postgresql.properties</value>-->
                 <!-- <value>file:///${properties.location}</value> -->
             </list>
         </property>
