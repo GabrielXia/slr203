@@ -166,10 +166,15 @@ public class CatalogServiceImplTest {
 	@Test
 	public void saveProductTest() throws Exception {
 		throw new Exception("not yet implemented");
+	}
+	
+	@Test 
+	public void findProductTest() throws Exception {
+		throw new Exception("not yet implemented");
 	}	
 	
 	@Test 
-	public void udapteProductTest() throws Exception {
+	public void updateProductTest() throws Exception {
 		throw new Exception("not yet implemented");
 	}
 	
@@ -187,11 +192,6 @@ public class CatalogServiceImplTest {
 
 	@Test
 	public void findProductsByCategoryIdTest() throws Exception {
-		throw new Exception("not yet implemented");
-	}
-
-	@Test 
-	public void findProductTest() throws Exception {
 		throw new Exception("not yet implemented");
 	}
 	
