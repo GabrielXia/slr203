@@ -77,7 +77,10 @@ public class ItemDaoTest extends AbstractBaseDaoTestCase {
         throw new Exception("not yet implemented");
     }
 
-
+    /**
+     * 2 points
+     * @throws Exception
+     */
     @Test
     public void testSearchItem() throws Exception {
         throw new Exception("not yet implemented");
