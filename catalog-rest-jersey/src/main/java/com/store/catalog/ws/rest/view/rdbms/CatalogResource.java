@@ -16,6 +16,7 @@ import java.util.List;
  * Created by ZCadi on 26/10/2015.
  */
 
+@Path("/catalog")
 public class CatalogResource {
 
 
@@ -30,18 +31,18 @@ public class CatalogResource {
         this.catalogServiceImpl = catalogServiceImpl;
     }
 
-
-
-
-    public Response getCategories() throws Exception {
-
-        return null;
+    @Path("/categories")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<CategoryDTO> getCategories() throws Exception {
+    	return catalogServiceImpl.findCategories();
     }
-
-
+    
+    @Path("/category/{id}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public Response getCategory(@PathParam("id") Long id) throws Exception {
-
-    	return null;
+    	return Response.ok(catalogServiceImpl.findCategory(id)).build();
     }
 
 

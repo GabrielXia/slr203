@@ -37,28 +37,64 @@ public class CategoryDaoTest  extends AbstractBaseDaoTestCase{
 
     @Test
     public void testCreateCategory() throws Exception {
-        throw new Exception("not yet implemented");
+        categoryDao.save(category);
+        assertTrue("primary key assigned", category.getId() != null);
     }
 
     @Test
     public void testUpdateCategory() throws Exception {
-        throw new Exception("not yet implemented");
+        categoryDao.save(category);
+        
+        category.setName(ConstantUtils.CATEGOY_NAME + "MDF");
+        category.setDescription(ConstantUtils.CATEGORY_DESCRIPTION + "MDF");
+        
+        categoryDao.save(category);
+        
+        Category catMdf = categoryDao.findOne(category.getId());
+        assertEquals(category, catMdf);
     }
 
     @Test
     public void testGetCategory() throws Exception {
-        throw new Exception("not yet implemented");
+    	categoryDao.save(category);
+    	
+    	Category cat = categoryDao.findOne(category.getId());
+    	
+    	assertNotNull(cat);
+    	assertEquals(category, cat);
     }
 
     @Test
     public void testRemoveCategory() throws Exception {
-        throw new Exception("not yet implemented");
+    	categoryDao.save(category);
+    	
+    	Category cat = categoryDao.findOne(category.getId());
+    	
+    	assertNotNull(cat.getId());
+    	assertEquals(category, cat);
+    	
+    	categoryDao.delete(category.getId());
+    	
+    	assertTrue(this.getIterableSize(categoryDao.findAll()) == 0);
     }
 
 
     @Test
     public void testGetCategories() throws Exception {
-        throw new Exception("not yet implemented");
+    	categoryDao.save(category);
+    	
+    	Iterable<Category> lst = categoryDao.findAll();
+    	
+    	assertTrue(getIterableSize(categoryDao.findAll()) == 1);
+    	
+    	Category cat2 = new Category();
+    	cat2.setId(new Random().nextLong());
+    	cat2.setName(ConstantUtils.CATEGOY_NAME + "2");
+    	cat2.setDescription(ConstantUtils.CATEGORY_DESCRIPTION + "2");
+    	
+    	categoryDao.save(cat2);
+    	
+    	assertTrue(getIterableSize(categoryDao.findAll()) == 2);
     }
 
     

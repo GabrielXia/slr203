@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.store.catalog.model.Category;
 import com.store.catalog.model.Product;
+import com.store.catalog.utils.ConstantUtils;
 
 import static com.store.catalog.utils.ConstantUtils.*;
 
@@ -42,43 +43,116 @@ public class ProductDaoTest extends AbstractBaseDaoTestCase {
 
     @Test
     public void testCreateProduct() throws Exception {
-        throw new Exception("not yet implemented");
+    	productDao.save(product);
+        assertTrue("primary key assigned", product.getId() != null);
     }    
    
     @Test
     public void testUpdateProduct() throws Exception {
-        throw new Exception("not yet implemented");
+    	productDao.save(product);
+        
+        product.setName(ConstantUtils.PRODUCT_NAME + "MDF");
+        product.setDescription(ConstantUtils.PRODUCT_DESCRIPTION + "MDF");
+        
+        productDao.save(product);
+        
+        Product proMdf = productDao.findOne(product.getId());
+        assertEquals(product, proMdf);
     }    
     
     
     @Test
     public void testGetProduct() throws Exception {
-        throw new Exception("not yet implemented");
+    	productDao.save(product);
+    	
+    	Product pro = productDao.findOne(product.getId());
+    	
+    	assertNotNull(pro);
+    	assertEquals(product, pro);
     }   
 
     
     @Test
     public void testRemoveProduct() throws Exception {
-        throw new Exception("not yet implemented");
+    	productDao.save(product);
+    	
+    	Product pro = productDao.findOne(product.getId());
+    	
+    	assertNotNull(pro.getId());
+    	assertEquals(product, pro);
+    	
+    	productDao.delete(product.getId());
+    	
+    	assertTrue(this.getIterableSize(productDao.findAll()) == 0);
     }
 
     
     
     @Test
     public void testGetProducts() throws Exception {
-        throw new Exception("not yet implemented");
+    	productDao.save(product);
+    	
+    	Iterable<Product> lst = productDao.findAll();
+    	
+    	assertTrue(getIterableSize(productDao.findAll()) == 1);
+    	
+    	Product pro2 = new Product();
+    	pro2.setId(new Random().nextLong());
+    	pro2.setName(ConstantUtils.PRODUCT_NAME + "2");
+    	pro2.setDescription(ConstantUtils.PRODUCT_DESCRIPTION + "2");
+    	pro2.setCategory(getCategory());
+    	
+    	productDao.save(pro2);
+    	
+    	assertTrue(getIterableSize(productDao.findAll()) == 2);
     }    
     
 
     @Test
     public void testGetProductsWithCategoryId() throws Exception {
-        throw new Exception("not yet implemented");
+        Category cat1 = getCategory();
+        Category cat2 = getCategory2();
+        
+        Product pro1 = new Product();
+    	pro1.setId(new Random().nextLong());
+    	pro1.setName(ConstantUtils.PRODUCT_NAME + "2");
+    	pro1.setDescription(ConstantUtils.PRODUCT_DESCRIPTION + "2");
+    	pro1.setCategory(cat1);
+    	productDao.save(pro1);
+    	
+        Product pro2 = new Product();
+    	pro2.setId(new Random().nextLong());
+    	pro2.setName(ConstantUtils.PRODUCT_NAME + "2");
+    	pro2.setDescription(ConstantUtils.PRODUCT_DESCRIPTION + "2");
+    	pro2.setCategory(cat2);
+    	
+    	productDao.save(pro2);
+    	assertTrue(getIterableSize(productDao.findByCategoryId(cat1.getId())) == 1);
+    	assertTrue(getIterableSize(productDao.findByCategoryId(cat2.getId())) == 1);
     }    
 
     
     @Test
     public void testGetProductsByCategoryName() throws Exception {
-        throw new Exception("not yet implemented");
+    	Category cat1 = getCategory();
+        Category cat2 = getCategory2();
+        
+        Product pro1 = new Product();
+    	pro1.setId(new Random().nextLong());
+    	pro1.setName(ConstantUtils.PRODUCT_NAME + "2");
+    	pro1.setDescription(ConstantUtils.PRODUCT_DESCRIPTION + "2");
+    	pro1.setCategory(cat1);
+    	productDao.save(pro1);
+    	
+        Product pro2 = new Product();
+    	pro2.setId(new Random().nextLong());
+    	pro2.setName(ConstantUtils.PRODUCT_NAME + "2");
+    	pro2.setDescription(ConstantUtils.PRODUCT_DESCRIPTION + "2");
+    	pro2.setCategory(cat2);
+    	
+    	productDao.save(pro2);
+    	assertTrue(getIterableSize(productDao.findByCategoryName(cat1.getName())) == 1);
+    	assertTrue(getIterableSize(productDao.findByCategoryName(cat2.getName())) == 1);
     }        
 	
 	

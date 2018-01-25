@@ -13,7 +13,9 @@ import java.util.Set;
  *
  */
 
-
+@Entity
+@Table(name="T_CATEGORY")
+@Access(AccessType.FIELD)
 public  class Category implements AbstractBean {
 
     /**
@@ -24,17 +26,18 @@ public  class Category implements AbstractBean {
     // =             Attributes             =
     // ======================================
 
-
+	@Id
+	@Column(name="id")
 	private Long id;
     
-
+	@Column(name="name")
 	private String name;
 
-
+	@Column(name="description")
 	private String description;
 
 
-
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Product> products = new HashSet<Product>();
 
     // ======================================

@@ -10,7 +10,9 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
+@Entity
+@Table(name="T_PRODUCT")
+@Access(AccessType.FIELD)
 public  class Product implements AbstractBean {
 
     /**
@@ -21,18 +23,25 @@ public  class Product implements AbstractBean {
 	// ======================================
     // =             Attributes             =
     // ======================================
+	@Id
+	@Column(name="id")
     private Long id;
 
-
+	@Column(name="name")
     private String name;
 
-
+	@Column(name="description")
     private String description;
 
-
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="category_fk", nullable = false)
     private Category category;
 
-
+	@JsonManagedReference
+	@OneToMany(fetch= FetchType.LAZY, 
+			mappedBy = "product", 
+			cascade = CascadeType.ALL)
     private Set<Item> items = new HashSet<Item>();
     
  

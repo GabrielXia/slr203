@@ -104,8 +104,16 @@ public final class Customer implements AbstractBean {
      * @throws CheckException thrown if the password is null, empty or different than the one
      *                        store in database
      */
-    public void matchPassword(final String password1) throws CheckException {
-        throw new RuntimeException("not yet implemented");
+    public boolean matchPassword(final String password1) throws CheckException {
+    	if(password1 == null) {
+    		throw new CheckException(this.INVALID_PASSWORD);
+    	} else if (password1 == "") {
+    		throw new CheckException("password is empty");
+    	} else if(password1 != this.password) {
+    		throw new CheckException("password is not correct");
+    	} else {
+    		return true;
+    	}
     }
 
     public String toString() {
