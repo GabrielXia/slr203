@@ -78,7 +78,7 @@ public class CustomerTest {
 	@Test
     public void verifyWhenPasswordNullReturnMsg() throws Exception {
         thrown.expect(CheckException.class);
-        thrown.expectMessage(Customer.INVALID_PASSWORD);
+        thrown.expectMessage(containsString(Customer.INVALID_PASSWORD));
         customer.matchPassword(null);
     }
 

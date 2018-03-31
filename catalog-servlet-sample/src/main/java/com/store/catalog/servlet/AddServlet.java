@@ -32,8 +32,8 @@ public class AddServlet extends HttpServlet{
             throws ServletException, IOException {
 		PrintWriter w = resp.getWriter();
 		String line = req.getReader().readLine();
-		String[] parts = line.split("\\+");
-		String a = parts[0];
+		String[] parts = line.split("\\n");
+		String a = parts[0];  
 		String b = parts[1];
 		int num1 = Integer.parseInt(a);
 		int num2 = Integer.parseInt(b);
